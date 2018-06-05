@@ -5,8 +5,7 @@
  */
 package com.hscanales;
 
-import com.hscanales.clans.Clan;
-import com.hscanales.clans.ClanFactory;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
