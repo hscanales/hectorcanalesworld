@@ -17,7 +17,7 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Game juego = Game.getInstance();
+        Menu juego = Menu.getInstance();
         juego.Start();
     }
     
