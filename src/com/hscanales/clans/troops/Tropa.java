@@ -18,4 +18,8 @@ public interface Tropa {
     void defend(Tropa tropa);
 
     void atacado(int damage);
+    
+    boolean checkLife();
+    
+    int getLife();
 }

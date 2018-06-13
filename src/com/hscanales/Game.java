@@ -10,8 +10,8 @@ package com.hscanales;
  * @author HsCanales <00136317@uca.edu.sv>
  */
 public class Game {
-    Player player1= new Player();
-    Player player2= new Player();
+    Player player1= new Player(this);
+    Player player2= new Player(this);
     int fase;
 
     public Game() {

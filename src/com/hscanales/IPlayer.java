@@ -15,5 +15,6 @@ public interface IPlayer {
     void Construir();
     void defender();
     void atacar();
+    void entrenar();
     
 }

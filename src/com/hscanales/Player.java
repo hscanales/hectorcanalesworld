@@ -7,6 +7,8 @@ package com.hscanales;
 
 import com.hscanales.clans.Clan;
 import com.hscanales.clans.ClanFactory;
+import com.hscanales.clans.troops.Tropa;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,16 +17,19 @@ import java.util.Scanner;
  * @author HsCanales <00136317@uca.edu.sv>
  */
 public class Player implements IPlayer {
-
+    Game game;
     Clan clan;
     ClanFactory fabrica;
     Scanner input = new Scanner(System.in);
+   public ArrayList<Tropa> entrenando = new ArrayList<>();
+    
+    
+    boolean turnFinished=false ;
 
-    boolean turnFinished = true;
-
-    public Player() {
+    public Player(Game game) {
         fabrica = new ClanFactory();
         seleccionarClan();
+        this.game=game;
     }
 
     @Override
@@ -71,6 +76,8 @@ public class Player implements IPlayer {
 
     @Override
     public void terminarTurno() {
+        this.turnFinished=true;
+        game.turno();
     }
 
     @Override
@@ -87,6 +94,10 @@ public class Player implements IPlayer {
 
     public boolean isTurnFinished() {
         return turnFinished;
+    }
+
+    @Override
+    public void entrenar() {
     }
 
 }

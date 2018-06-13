@@ -11,13 +11,15 @@ import com.hscanales.clans.structures.Structure;
  *
  * @author uca
  */
-public class Warrior implements Tropa {
+public class CommonTroop implements Tropa {
     int damageE,damageT,vida;
+    String nombre;
 
-    public Warrior() {
-        this.damageE = 200;
-        this.damageT = 150;
-        this.vida = 2000;
+    public CommonTroop(String nombre) {
+        this.damageE = 150;
+        this.damageT = 75;
+        this.vida = 200;
+        this.nombre=nombre;
     }
     
 
@@ -37,5 +39,19 @@ public class Warrior implements Tropa {
     public void atacado(int damage) {
         this.vida -= damage;
         System.out.println("La tropa a recibido " + damage + " de danio ");
+        checkLife();
+    }
+
+       @Override
+    public boolean checkLife() {
+        if(vida<0){
+          return false;
+        }
+       return true;
+    }
+
+    @Override
+    public int getLife() {
+        return vida;
     }
 }

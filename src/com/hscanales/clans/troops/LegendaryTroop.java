@@ -6,21 +6,24 @@
 package com.hscanales.clans.troops;
 
 import com.hscanales.clans.structures.Structure;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author uca
  */
-public class Bombardero implements Tropa {
+public class LegendaryTroop implements Tropa {
+    
     
     int damageE, damageT, vida;
     String nombre;
     
-    public Bombardero() {
-        this.damageE = 1500;
-        this.damageT = 7000;
-        this.vida = 60000;
-        this.nombre = "Bombardero";
+    public LegendaryTroop(String nombre) {
+        this.damageE = 600;
+        this.damageT = 225;
+        this.vida = 1000;
+        this.nombre = nombre;
     }
     
     public int getDamageE() {
@@ -54,6 +57,19 @@ public class Bombardero implements Tropa {
     public void atacado(int damage) {
         this.vida -= damage;
         System.out.println("La tropa a recibido " + damage + " de danio ");
+    }
+
+      @Override
+    public boolean checkLife() {
+        if(vida<0){
+          return false;
+        }
+       return true;
+    }
+
+    @Override
+    public int getLife() {
+        return vida;
     }
     
 }
