@@ -21,14 +21,9 @@ public class main {
      */
     public static void main(String[] args) {
 
-      //Menu juego = Menu.getInstance();
-        //juego.Start();
-        Player player = new Player();
-        player.entrenar();
-        player.entrenar();
-        
-        
-        System.out.println(player.entrenando.size());
+      Menu juego = Menu.getInstance();
+        juego.Start();
+      
     }
     
 }
