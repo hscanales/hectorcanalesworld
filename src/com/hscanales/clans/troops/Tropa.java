@@ -22,4 +22,6 @@ public interface Tropa {
     boolean checkLife();
     
     int getLife();
+
+    String getName();
 }

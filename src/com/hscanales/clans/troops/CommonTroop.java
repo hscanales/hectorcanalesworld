@@ -12,29 +12,29 @@ import com.hscanales.clans.structures.Structure;
  * @author uca
  */
 public class CommonTroop implements Tropa {
-    int damageE,damageT,vida;
-    String nombre;
+
+    int damageE, damageT;
+    public int vida;
+    public String nombre;
 
     public CommonTroop(String nombre) {
         this.damageE = 150;
         this.damageT = 75;
         this.vida = 200;
-        this.nombre=nombre;
+        this.nombre = nombre;
     }
-    
 
-    
     @Override
     public void attack(Structure estructura) {
         estructura.getDamage(damageE);
     }
-    
+
     @Override
     public void defend(Tropa tropa) {
         tropa.atacado(this.damageT);
-        
+
     }
-    
+
     @Override
     public void atacado(int damage) {
         this.vida -= damage;
@@ -42,16 +42,22 @@ public class CommonTroop implements Tropa {
         checkLife();
     }
 
-       @Override
+    @Override
     public boolean checkLife() {
-        if(vida<0){
-          return false;
+        if (vida < 0) {
+            return false;
         }
-       return true;
+        return true;
     }
 
     @Override
     public int getLife() {
         return vida;
     }
+
+    @Override
+    public String getName() {
+        return nombre;
+    }
+
 }

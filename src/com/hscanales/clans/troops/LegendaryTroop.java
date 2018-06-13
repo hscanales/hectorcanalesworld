@@ -72,4 +72,8 @@ public class LegendaryTroop implements Tropa {
         return vida;
     }
     
+    @Override
+    public String getName() {
+        return nombre;
+    }
 }

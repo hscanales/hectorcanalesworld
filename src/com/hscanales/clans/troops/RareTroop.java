@@ -59,5 +59,9 @@ public class RareTroop implements Tropa{
     }
 
 
+    @Override
+    public String getName() {
+        return nombre;
+    }
 
 }

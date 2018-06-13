@@ -19,5 +19,10 @@ public class Empires implements Clan {
     @Override
     public void lvlup() {
     }
+
+    @Override
+    public String getName() {
+    return "EMPIRES";
+    }
     
 }

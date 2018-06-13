@@ -11,5 +11,5 @@ package com.hscanales.clans;
  */
 public interface Clan {
     public void lvlup();
-    
+    public String getName();
 }

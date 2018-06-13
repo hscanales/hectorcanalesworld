@@ -23,4 +23,9 @@ public class Novak implements  Clan {
     public void lvlup(){
         this.Center.lvlup();
     }
+
+    @Override
+    public String getName() {
+    return "NOVAK";
+    }
 }
