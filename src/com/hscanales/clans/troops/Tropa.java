@@ -18,10 +18,19 @@ public interface Tropa {
     void defend(Tropa tropa);
 
     void atacado(int damage);
-    
+
     boolean checkLife();
-    
+
     int getLife();
 
     String getName();
+
+    void Training();
+
+    int getTraining();
+
+    void Avanzando();
+
+    int getVelocidad();
+
 }

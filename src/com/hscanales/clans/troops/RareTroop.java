@@ -65,4 +65,23 @@ public class RareTroop implements Tropa {
         return nombre;
     }
 
+      @Override
+    public void Training() {
+        this.Entrenamiento--;
+    }
+    
+    @Override
+    public int getTraining() {
+        return this.Entrenamiento;
+    }
+
+    @Override
+    public void Avanzando() {
+        this.Velocidad--;
+    }
+
+    @Override
+    public int getVelocidad() {
+        return this.Velocidad;
+    }
 }

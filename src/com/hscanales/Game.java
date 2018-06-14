@@ -32,6 +32,21 @@ public class Game {
             player2.turnFinished=false;
             System.out.println("Cambio de fase");
             System.out.println(fase);
+            for(int i= 0; i<player1.entrenando.size();i++){
+                player1.entrenando.get(i).Training();
+                if(player1.entrenando.get(i).getTraining()<=0){
+                    player1.entrenadas.add(player1.entrenando.get(i));
+                    player1.entrenando.remove(i);
+                }
+            }
+            for(int i= 0; i<player2.entrenando.size();i++){
+                player2.entrenando.get(i).Training();
+                if(player2.entrenando.get(i).getTraining()<=0){
+                    player2.entrenadas.add(player2.entrenando.get(i));
+                    player2.entrenando.remove(i);
+                }
+            }
+        
         }
         System.out.println("Fase= "+ fase);
     }
