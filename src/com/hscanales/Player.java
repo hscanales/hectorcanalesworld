@@ -8,7 +8,9 @@ package com.hscanales;
 import com.hscanales.clans.Clan;
 import com.hscanales.clans.ClanFactory;
 import com.hscanales.clans.structures.Barracks;
+import com.hscanales.clans.structures.Escuela;
 import com.hscanales.clans.structures.Militar;
+import com.hscanales.clans.structures.Structure;
 import com.hscanales.clans.troops.Tropa;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -25,6 +27,10 @@ public class Player implements IPlayer {
     ClanFactory fabrica;
     Scanner input = new Scanner(System.in);
     public ArrayList<Tropa> entrenando = new ArrayList<>();
+    public ArrayList<Tropa> entrenadas = new ArrayList<>();
+    
+    
+    public ArrayList<Tropa> attacked = new ArrayList<>();
 
     boolean turnFinished = false;
 
@@ -84,7 +90,7 @@ public class Player implements IPlayer {
     @Override
     public void terminarTurno() {
         this.turnFinished = true;
-        game.turno();
+
     }
 
     @Override
@@ -97,6 +103,48 @@ public class Player implements IPlayer {
 
     @Override
     public void atacar() {
+        Tropa tropa = null;
+        int op = 0;
+        boolean flag= true;
+        Escuela estructura = new Escuela();
+        if (entrenadas.size() <= 0) {
+            System.out.println("No tienes tropas para atacar a tu enemigo! ");
+            System.out.println("Para entrenar tropas elige la opcion de Entrenar Tropas en el menu jugador");
+        }
+        if (entrenadas.size() >0){
+            
+            System.out.println("Lista de Tropas entrenadas: ");
+            for( int i=0;i<entrenadas.size();i++){
+                System.out.println(i + "- "+ entrenadas.get(i).getName());
+            }
+            System.out.println("Ingrese -1 para salir");
+            
+            do{
+               try{
+                System.out.println("Seleccione su opcion: ");
+                op=input.nextInt();
+            }catch(InputMismatchException e){
+                System.err.println("Error al momento de ingresar el dato, intenta denuevo: ");
+                input.next();
+            
+            }
+                if(op>-1 && op<11){
+                tropa=entrenadas.get(op);
+                tropa.attack(estructura);
+                flag=false;
+                
+                }else{
+                    flag=false;
+                    
+                }
+            }while(flag);
+            
+        
+        
+        }
+        
+        
+        
     }
 
     public boolean isTurnFinished() {
@@ -109,6 +157,8 @@ public class Player implements IPlayer {
         Boolean flag = true;
         int op = -1;
         Militar b = new Barracks(this);
+        
+        if((entrenadas.size()+entrenando.size())<11){
         do {
             if ("NOVAK".equals(a)) {
                 System.out.println("Menu Entrenamiento Novak: ");
@@ -140,6 +190,9 @@ public class Player implements IPlayer {
                         break;
                     default:
                         System.out.println("Opcion no valida, intente denuevo");
+                        break;
+                    case 0:
+                        flag = false;
                         break;
 
                 }
@@ -178,6 +231,9 @@ public class Player implements IPlayer {
                     default:
                         System.out.println("Opcion no valida, intente denuevo");
                         break;
+                    case 0:
+                        flag = false;
+                        break;
 
                 }
 
@@ -214,11 +270,18 @@ public class Player implements IPlayer {
                     default:
                         System.out.println("Opcion no valida, intente denuevo");
                         break;
+                    case 0:
+                        flag = false;
+                        break;
 
                 }
 
             }
         } while (flag);
 
-    }
+    }else{
+            System.err.println("Ya llegaste al limite de tropas, no puedes seguir entrenando");
+        }
+    
+}
 }

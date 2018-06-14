@@ -90,15 +90,13 @@ public class Game {
                     break;
                 case 0:
                     flag=true;
-                    player.turnFinished=true;
-                    System.out.println("lmao");
+                    player.turnFinished=true;                  
                     break;
                 default:
                     System.err.println("Opcion no valida");
             }
         }
         turno();
-        System.out.println("lmao2");
     }
 
 }

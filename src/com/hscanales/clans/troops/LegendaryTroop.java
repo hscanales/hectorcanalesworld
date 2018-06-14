@@ -6,72 +6,75 @@
 package com.hscanales.clans.troops;
 
 import com.hscanales.clans.structures.Structure;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
  * @author uca
  */
 public class LegendaryTroop implements Tropa {
-    
-    
-    int damageE, damageT, vida;
+
+    int damageE, damageT;
+    public int vida;
     String nombre;
-    
+    public int Velocidad = 2, Entrenamiento = 10;
+
     public LegendaryTroop(String nombre) {
         this.damageE = 600;
         this.damageT = 225;
         this.vida = 1000;
         this.nombre = nombre;
     }
-    
+
     public int getDamageE() {
         return damageE;
     }
-    
+
     public void setDamageE(int damageE) {
         this.damageE = damageE;
     }
-    
+
     public int getDamageT() {
         return damageT;
     }
-    
+
     public void setDamageT(int damageT) {
         this.damageT = damageT;
     }
-    
-    @Override
+
+   @Override
     public void attack(Structure estructura) {
-        estructura.getDamage(damageE);
+        if (vida > 0) {
+            estructura.getDamage(damageE);
+        }
     }
-    
+
     @Override
     public void defend(Tropa tropa) {
-        tropa.atacado(this.damageT);
-        
+        if (vida > 0) {
+            tropa.atacado(this.damageT);
+        }
     }
-    
+
     @Override
     public void atacado(int damage) {
         this.vida -= damage;
         System.out.println("La tropa a recibido " + damage + " de danio ");
     }
 
-      @Override
+    @Override
     public boolean checkLife() {
-        if(vida<0){
-          return false;
+        if (vida < 0) {
+            return false;
         }
-       return true;
+        return true;
     }
 
     @Override
     public int getLife() {
         return vida;
     }
-    
+
     @Override
     public String getName() {
         return nombre;

@@ -16,6 +16,7 @@ public class CommonTroop implements Tropa {
     int damageE, damageT;
     public int vida;
     public String nombre;
+    public int Velocidad = 4, Entrenamiento = 2;
 
     public CommonTroop(String nombre) {
         this.damageE = 150;
@@ -26,13 +27,16 @@ public class CommonTroop implements Tropa {
 
     @Override
     public void attack(Structure estructura) {
-        estructura.getDamage(damageE);
+        if (vida > 0) {
+            estructura.getDamage(damageE);
+        }
     }
 
     @Override
     public void defend(Tropa tropa) {
-        tropa.atacado(this.damageT);
-
+        if (vida > 0) {
+            tropa.atacado(this.damageT);
+        }
     }
 
     @Override
@@ -46,8 +50,9 @@ public class CommonTroop implements Tropa {
     public boolean checkLife() {
         if (vida < 0) {
             return false;
+        } else {
+            return true;
         }
-        return true;
     }
 
     @Override
