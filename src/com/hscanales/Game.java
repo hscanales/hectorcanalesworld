@@ -35,6 +35,15 @@ public class Game {
             System.out.println(fase);
             training();
             building();
+            attacking();
+            if(player1.centro.getVida()<=0){
+                this.GameOver=true;
+                System.out.println("A ganado el player 2");
+            }
+            if(player2.centro.getVida()<=0){
+                this.GameOver=true;
+                System.out.println("A ganado el Player 1 ");
+            }
         }
         System.out.println("Fase= " + fase);
     }
@@ -48,12 +57,14 @@ public class Game {
             System.out.println(" ======     =======  ");
             freePlayer = player2;
             Play(player1);
+            player2=freePlayer;
             System.out.println("\n\n\n\n\n");
             System.out.println(" ==================  ");
             System.out.println("=|Player2's turn  |= ");
             System.out.println(" ======     =======  ");
             freePlayer = player1;
             Play(player2);
+            player1=freePlayer;
 
         } while (!GameOver);
 
@@ -150,6 +161,57 @@ public class Game {
                 }
             }
         }
+    }
+
+    private void attacking() {
+       
+        
+        if (player1.avanzando.size() > 0) {
+            for (int i = 0; i < player1.avanzando.size(); i++) {
+                player1.avanzando.get(i).Avanzando();
+                if (player1.avanzando.get(i).getVelocidad() <= 0) {
+                    player2.attacked.add(player1.avanzando.get(i));
+                    player1.atacando.add(player1.avanzando.get(i));
+                    player1.avanzando.remove(i);
+                }
+            }
+        }
+
+        if (player2.avanzando.size() > 0) {
+            for (int i = 0; i < player2.avanzando.size(); i++) {
+                player2.avanzando.get(i).Avanzando();
+                if (player2.avanzando.get(i).getVelocidad() <= 0) {
+                    player1.attacked.add(player2.avanzando.get(i));
+                    player2.atacando.add(player2.avanzando.get(i));
+                    player2.avanzando.remove(i);
+                }
+            }
+        }
+    
+     if(player1.atacando.size()>0){
+            for(int i=0; i< player1.atacando.size();i++){
+                if(player1.atacando.get(i).getLife()<=0){
+                    player1.atacando.remove(i);
+                    System.out.println("La tropa del player 1 a muerto ");
+                }else{
+                    player1.atacando.get(i).attack();
+                }
+                
+            }
+        }
+        if(player2.atacando.size()>0){
+            for(int i=0; i< player2.atacando.size();i++){
+                if(player2.atacando.get(i).getLife()<=0){
+                    player2.atacando.remove(i);
+                    System.out.println("La tropa atacando del Player 2 a muerto");
+                }else{
+                    player2.atacando.get(i).attack();
+                }
+                
+            }
+        }
+        
+    
     }
 
 }

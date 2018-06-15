@@ -86,5 +86,8 @@ public class CommandCenter implements Structure {
     @Override
     public void entrenar(String type) {
     }
-
+ @Override
+    public int getVida() {
+        return vida;
+    }
 }

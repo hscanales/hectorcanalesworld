@@ -18,6 +18,7 @@ public class RareTroop implements Tropa {
     public int vida;
     public int Velocidad = 2, Entrenamiento = 4;
     Structure estructura ;
+    Tropa enemigo;
     
     public RareTroop(String nombre) {
         this.vida = 600;
@@ -26,19 +27,24 @@ public class RareTroop implements Tropa {
         this.nombre = nombre;
     }
 
- @Override
+@Override
     public void attack() {
         if (vida > 0) {
-            estructura.getDamage(damageE);
+            if(estructura==null ){
+                if(enemigo==null){
+                    System.out.println(" no hay target definido");
+                }else{
+                    enemigo.atacado(damageT);
+                }
+                
+            }else{
+                estructura.getDamage(damageE);
+            }
+            
         }
     }
 
-    @Override
-    public void defend(Tropa tropa) {
-        if (vida > 0) {
-            tropa.atacado(this.damageT);
-        }
-    }
+
 
     @Override
     public void atacado(int damage) {
@@ -90,5 +96,16 @@ public class RareTroop implements Tropa {
     public void Target(Structure estructura) {
     
     this.estructura=estructura;
+    }
+
+    @Override
+    public void defend() {
+        enemigo.atacado(damageT);
+    }
+
+    @Override
+    public void Target(Tropa tropa) {
+        enemigo=tropa;
+        
     }
 }

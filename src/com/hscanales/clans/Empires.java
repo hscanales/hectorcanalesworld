@@ -16,9 +16,7 @@ public class Empires implements Clan {
         System.out.println("Has decidido utilizar a "+Chief);
     }
 
-    @Override
-    public void lvlup() {
-    }
+  
 
     @Override
     public String getName() {

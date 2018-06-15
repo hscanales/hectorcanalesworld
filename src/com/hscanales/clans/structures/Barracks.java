@@ -62,5 +62,8 @@ public class Barracks implements  Structure {
     public int recolectar() {
         return 0;
     }
-
+ @Override
+    public int getVida() {
+        return vida;
+    }
 }

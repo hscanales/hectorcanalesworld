@@ -55,4 +55,9 @@ public class Mercado implements  Structure {
     public void entrenar(String type) {
     }
 
+    @Override
+    public int getVida() {
+        return vida;
+    }
+
 }

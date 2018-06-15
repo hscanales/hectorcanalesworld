@@ -24,5 +24,5 @@ public interface Structure {
     int recolectar();
 
     void entrenar(String type);
-
+    int getVida();
 }

@@ -18,7 +18,8 @@ public class CommonTroop implements Tropa {
     public String nombre;
     public int Velocidad = 4, Entrenamiento = 2;
     Structure estructura;
-
+    Tropa enemigo;
+    
     public CommonTroop(String nombre) {
         this.damageE = 150;
         this.damageT = 75;
@@ -26,20 +27,33 @@ public class CommonTroop implements Tropa {
         this.nombre = nombre;
     }
 
-    @Override
+  @Override
     public void attack() {
         if (vida > 0) {
-            estructura.getDamage(damageE);
+            if(estructura==null ){
+                if(enemigo==null){
+                    System.out.println(" no hay target definido");
+                }else{
+                    enemigo.atacado(damageT);
+                }
+                
+            }else{
+                estructura.getDamage(damageE);
+            }
+            
         }
+    }
+
+ @Override
+    public void defend() {
+        enemigo.atacado(damageT);
     }
 
     @Override
-    public void defend(Tropa tropa) {
-        if (vida > 0) {
-            tropa.atacado(this.damageT);
-        }
+    public void Target(Tropa tropa) {
+        enemigo=tropa;
+        
     }
-
     @Override
     public void atacado(int damage) {
         this.vida -= damage;

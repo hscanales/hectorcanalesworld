@@ -19,6 +19,7 @@ public class LegendaryTroop implements Tropa {
     String nombre;
     public int Velocidad = 2, Entrenamiento = 10;
     Structure estructura;
+    Tropa enemigo;
     
     public LegendaryTroop(String nombre) {
         this.damageE = 600;
@@ -46,16 +47,20 @@ public class LegendaryTroop implements Tropa {
    @Override
     public void attack() {
         if (vida > 0) {
-            estructura.getDamage(damageE);
+            if(estructura==null ){
+                if(enemigo==null){
+                    System.out.println(" no hay target definido");
+                }else{
+                    enemigo.atacado(damageT);
+                }
+                
+            }else{
+                estructura.getDamage(damageE);
+            }
+            
         }
     }
 
-    @Override
-    public void defend(Tropa tropa) {
-        if (vida > 0) {
-            tropa.atacado(this.damageT);
-        }
-    }
 
     @Override
     public void atacado(int damage) {
@@ -107,5 +112,14 @@ public class LegendaryTroop implements Tropa {
     this.estructura=estructura;
     }
 
+ @Override
+    public void defend() {
+        enemigo.atacado(damageT);
+    }
 
+    @Override
+    public void Target(Tropa tropa) {
+        enemigo=tropa;
+        
+    }
 }

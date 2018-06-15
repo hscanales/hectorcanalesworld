@@ -13,11 +13,9 @@ public class BadLion implements Clan{
     String Chief="King Adam";
     
     public BadLion() {
+         System.out.println("Has elegido a "+Chief);
     }
 
-    @Override
-    public void lvlup() {
-    }
 
     @Override
     public String getName() {

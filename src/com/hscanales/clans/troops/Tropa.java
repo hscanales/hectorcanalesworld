@@ -15,7 +15,7 @@ public interface Tropa {
 
     void attack();
 
-    void defend(Tropa tropa);
+    void defend();
 
     void atacado(int damage);
 
@@ -32,7 +32,8 @@ public interface Tropa {
     void Avanzando();
 
     int getVelocidad();
-    
+
     void Target(Structure estructura);
 
+    void Target(Tropa tropa);
 }
