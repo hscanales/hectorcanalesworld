@@ -16,5 +16,6 @@ public interface IPlayer {
     void defender();
     void atacar();
     void entrenar();
+    void lvlup();
     
 }

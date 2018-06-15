@@ -8,6 +8,7 @@ package com.hscanales;
 import com.hscanales.clans.Clan;
 import com.hscanales.clans.ClanFactory;
 import com.hscanales.clans.structures.Barracks;
+import com.hscanales.clans.structures.CommandCenter;
 import com.hscanales.clans.structures.Escuela;
 import com.hscanales.clans.structures.Militar;
 import com.hscanales.clans.structures.Structure;
@@ -26,12 +27,20 @@ public class Player implements IPlayer {
     Clan clan;
     ClanFactory fabrica;
     Scanner input = new Scanner(System.in);
+    //Arrays de Tropas
     public ArrayList<Tropa> entrenando = new ArrayList<>();
     public ArrayList<Tropa> entrenadas = new ArrayList<>();
     public ArrayList<Tropa> avanzando = new ArrayList<>();
 
+    //Array de Tropas enemigas
     public ArrayList<Tropa> attacked = new ArrayList<>();
 
+    //Array de Estructuras 
+    public ArrayList<Structure> construyendo = new ArrayList<>();
+    public ArrayList<Structure> edificios = new ArrayList<>();
+    
+    CommandCenter centro = new CommandCenter("Command Center");
+    
     boolean turnFinished = false;
 
     public Player(Game game) {
@@ -106,7 +115,7 @@ public class Player implements IPlayer {
         Tropa tropa ;
         int op = 0;
         boolean flag = true;
-        Escuela estructura = new Escuela();
+        
         if (entrenadas.size() <= 0) {
             System.out.println("No tienes tropas para atacar a tu enemigo! ");
             System.out.println("Para entrenar tropas elige la opcion de Entrenar Tropas en el menu jugador");
@@ -132,6 +141,8 @@ public class Player implements IPlayer {
                         System.out.println("A decidio utilizar la tropa : "+ tropa.getName());
                         avanzando.add(entrenadas.get(op));
                         entrenadas.remove(op);
+                        Structure estructura = elegirAtaque();
+                        
                         flag = false;
 
                     } else {
@@ -155,7 +166,7 @@ public class Player implements IPlayer {
         String a = clan.getName();
         Boolean flag = true;
         int op = -1;
-        Militar b = new Barracks(this);
+        Militar b = new Barracks(this,"Boot Camp");
 
         if ((entrenadas.size() + entrenando.size()) < 11) {
             do {
@@ -282,5 +293,27 @@ public class Player implements IPlayer {
             System.err.println("Ya llegaste al limite de tropas, no puedes seguir entrenando");
         }
 
+    }
+
+    private Structure elegirAtaque() {
+    Structure g = null;
+     if(game.freePlayer.edificios.size()<=0){
+         System.out.println("Vas a atacar al Centro de Mando Enemigo!");
+         g = game.freePlayer.centro;
+         
+     }
+     else{
+         System.out.println("Edificios de tu enemigo: ");
+         for(int i = 0;i<game.freePlayer.edificios.size();i++)
+             //getName();
+             System.out.println(i + "- Nombre: ");
+     }
+    
+    return  g;
+    }
+
+    @Override
+    public void lvlup() {
+        centro.lvlup();
     }
 }
