@@ -13,7 +13,7 @@ import com.hscanales.clans.structures.Structure;
  */
 public interface Tropa {
 
-    void attack(Structure estructura);
+    void attack();
 
     void defend(Tropa tropa);
 
@@ -32,5 +32,7 @@ public interface Tropa {
     void Avanzando();
 
     int getVelocidad();
+    
+    void Target(Structure estructura);
 
 }

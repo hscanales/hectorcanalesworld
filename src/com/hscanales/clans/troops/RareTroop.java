@@ -17,7 +17,8 @@ public class RareTroop implements Tropa {
     String nombre;
     public int vida;
     public int Velocidad = 2, Entrenamiento = 4;
-
+    Structure estructura ;
+    
     public RareTroop(String nombre) {
         this.vida = 600;
         this.damageE = 300;
@@ -26,7 +27,7 @@ public class RareTroop implements Tropa {
     }
 
  @Override
-    public void attack(Structure estructura) {
+    public void attack() {
         if (vida > 0) {
             estructura.getDamage(damageE);
         }
@@ -83,5 +84,11 @@ public class RareTroop implements Tropa {
     @Override
     public int getVelocidad() {
         return this.Velocidad;
+    }
+
+    @Override
+    public void Target(Structure estructura) {
+    
+    this.estructura=estructura;
     }
 }

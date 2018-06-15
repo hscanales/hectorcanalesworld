@@ -14,6 +14,7 @@ import com.hscanales.clans.structures.*;
 public class Novak implements  Clan {
     String Chief="Lord Obdulio";
     CommandCenter Center;
+    
     Novak() {
         System.out.println("Has elegido a "+Chief);
         Center= new CommandCenter(1,1);
