@@ -9,8 +9,6 @@ import com.hscanales.clans.Clan;
 import com.hscanales.clans.ClanFactory;
 import com.hscanales.clans.structures.Barracks;
 import com.hscanales.clans.structures.CommandCenter;
-import com.hscanales.clans.structures.Escuela;
-import com.hscanales.clans.structures.Militar;
 import com.hscanales.clans.structures.Structure;
 import com.hscanales.clans.troops.Tropa;
 import java.util.ArrayList;
@@ -166,15 +164,15 @@ public class Player implements IPlayer {
         String a = clan.getName();
         Boolean flag = true;
         int op = -1;
-        Militar b = new Barracks(this,"Boot Camp");
+        Structure b = new Barracks(this,"Boot Camp");
 
         if ((entrenadas.size() + entrenando.size()) < 11) {
             do {
                 if ("NOVAK".equals(a)) {
                     System.out.println("Menu Entrenamiento Novak: ");
                     System.out.println("1- Entrenar Batallon Kyogra");
-                    System.out.println("2- Entrenar Batallon Hajuzk");
-                    System.out.println("3- Entrenar Batallon DoomPiggy");
+                    System.out.println("2- Entrenar Acorazado Hajuzk");
+                    System.out.println("3- Entrenar DoomPiggy");
                     System.out.println("0- Salir");
                     try {
                         System.out.println("Ingrese su opcion");
@@ -212,8 +210,8 @@ public class Player implements IPlayer {
                 if ("BADLION".equals(a)) {
                     System.out.println("Menu Entrenamiento BadLion: ");
                     System.out.println("1- Entrenar Squad Ginie");
-                    System.out.println("2- Entrenar Squad Pikaoku");
-                    System.out.println("3- Entrenar Squad CringieCake");
+                    System.out.println("2- Entrenar Pikaoku Bomber");
+                    System.out.println("3- Entrenar CringieCake");
                     System.out.println("0- Salir");
 
                     try {
@@ -252,8 +250,8 @@ public class Player implements IPlayer {
                 if ("EMPIRES".equals(a)) {
                     System.out.println("Menu Entrenamiento Empires: ");
                     System.out.println("1- Entrenar Escuadron Zeus");
-                    System.out.println("2- Entrenar Escuadron Joa");
-                    System.out.println("3- Entrenar Escuadron Pretcorp");
+                    System.out.println("2- Entrenar JoaFM18 ");
+                    System.out.println("3- Entrenar Pretcorp");
                     System.out.println("0- Salir");
 
                     try {
@@ -297,6 +295,7 @@ public class Player implements IPlayer {
 
     private Structure elegirAtaque() {
     Structure g = null;
+    int op;
      if(game.freePlayer.edificios.size()<=0){
          System.out.println("Vas a atacar al Centro de Mando Enemigo!");
          g = game.freePlayer.centro;
@@ -304,9 +303,21 @@ public class Player implements IPlayer {
      }
      else{
          System.out.println("Edificios de tu enemigo: ");
-         for(int i = 0;i<game.freePlayer.edificios.size();i++)
-             //getName();
-             System.out.println(i + "- Nombre: ");
+         for(int i = 0;i<game.freePlayer.edificios.size();i++){
+             
+             System.out.println(i + "- Nombre: "+ game.freePlayer.edificios.get(i).getName());
+         }
+         System.out.println("Elige tu opcion: ");
+         
+         try{
+             op=input.nextInt();
+             g=game.freePlayer.edificios.get(op);
+         }catch(InputMismatchException e){
+             System.out.println("Formato incorrecto, intenta denuevo: ");
+             input.next();
+         }
+         
+     
      }
     
     return  g;
